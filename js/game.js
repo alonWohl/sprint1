@@ -7,7 +7,6 @@ var savedTable
 var gLevel = {
   size: 4,
   MINES: 2,
-  flagsCounter: 0,
 }
 var gGame = {
   isOn: false,
@@ -18,13 +17,9 @@ var gGame = {
 }
 
 function onInit() {
-  gGame.isOn = true
-  gGame.flagsCounter = 0
-  gGame.firstClick = false
-  gBoard = buildBoard(4)
-  gLevel.MINES = 2
+  resetGame()
+  gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
-  console.table(gBoard)
 }
 
 function buildBoard(size) {
@@ -44,7 +39,7 @@ function buildBoard(size) {
     }
     board.push(rows)
   }
-  placeMines(board, gLevel.MINES)
+  // placeMines(board, gLevel.MINES)
   return board
 }
 
@@ -80,6 +75,11 @@ function renderBoard(board) {
 
 function onCellClicked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isShown) return
+ 
+  if (!gGame.firstClick) {
+    placeMines(gBoard, gLevel.MINES, i, j)
+    gGame.firstClick = true
+  }
   const cell = gBoard[i][j]
 
   if (cell.isMine) {
@@ -94,9 +94,37 @@ function onCellClicked(elCell, i, j) {
     if (cell.minesAroundCount === 0) {
       expandShown(gBoard, i, j)
     }
+    checkGameOver()
   }
 }
+function checkGameOver() {
+  for (var i = 0; i < gBoard.length; i++) {
+    for (var j = 0; j < gBoard[i].length; j++) {
+      const cell = gBoard[i][j]
+      if (!cell.isMine && !cell.isShown) {
+        return false
+      }
+    }
+  }
 
+  var correctFlags = 0
+  for (var i = 0; i < gBoard.length; i++) {
+    for (var j = 0; j < gBoard[i].length; j++) {
+      const cell = gBoard[i][j]
+      if (cell.isMine && cell.isMarked) {
+        correctFlags++
+      }
+    }
+  }
+
+  if (correctFlags === gLevel.MINES) {
+    gGame.isOn = false
+    alert('Congratulations! You have won the game!')
+    return true
+  }
+
+  return false
+}
 function expandShown(board, row, col) {
   for (let i = row - 1; i <= row + 1; i++) {
     for (let j = col - 1; j <= col + 1; j++) {
@@ -114,39 +142,41 @@ function expandShown(board, row, col) {
       }
     }
   }
+  checkGameOver()
 }
 function changeLevelEasy() {
-  gGame.firstClick = false
-  gGame.isOn = true
   gLevel.size = 4
   gLevel.MINES = 2
+  resetGame()
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
 }
 
 function changeLevelMedium() {
-  gGame.firstClick = false
-  gGame.isOn = true
   gLevel.size = 8
   gLevel.MINES = 14
-  gBoard = buildBoard(gLevel.size)
-  renderBoard(gBoard)
-}
-function changeLevelExpert() {
-  gGame.firstClick = false
-  gGame.isOn = true
-  gLevel.size = 12
-  gLevel.MINES = 32
+  resetGame()
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
 }
 
-function placeMines(board, minesCount) {
+function changeLevelExpert() {
+  gLevel.size = 12
+  gLevel.MINES = 32
+  resetGame()
+  gBoard = buildBoard(gLevel.size)
+  renderBoard(gBoard)
+}
+function placeMines(board, minesCount, i, j) {
   var minesPlaced = 0
   while (minesPlaced < minesCount) {
     const row = Math.floor(Math.random() * board.length)
     const col = Math.floor(Math.random() * board[0].length)
-    if (!board[row][col].isMine) {
+
+    if (
+      !board[row][col].isMine &&
+      !(Math.abs(row - i) <= 1 && Math.abs(col - j) <= 1)
+    ) {
       board[row][col].isMine = true
       minesPlaced++
     }
@@ -168,11 +198,26 @@ function revealAllMines() {
 function onCellMarked(elCell, i, j) {
   const cell = gBoard[i][j]
 
-  if (cell.isShown || gLevel.flagsCounter >= gLevel.MINES) return
-  cell.isMarked = true
+  if (cell.isShown) return
 
   if (cell.isMarked) {
-    elCell.innerText = '⛳️'
-    gLevel.flagsCounter++
+    cell.isMarked = false
+    elCell.innerText = ''
+    gGame.markedCount--
+  } else {
+    if (gGame.markedCount < gLevel.MINES) {
+      cell.isMarked = true
+      elCell.innerText = '⛳️'
+      gGame.markedCount++
+    }
   }
+  checkGameOver()
+}
+function resetGame() {
+  gGame.isOn = true
+  gGame.shownCount = 0
+  gGame.markedCount = 0
+  gGame.secsPassed = 0
+  gGame.firstClick = false
+  gLevel.markedCounter = 0
 }
