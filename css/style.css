@@ -1,0 +1,25 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+table{
+    /* width: 300px; */
+    height: 300px;
+    margin: auto;
+    border: 1px solid black;
+}
+
+table td{
+border: 1px solid black;
+width: 40px;
+height: 40px;
+
+}
+
+.cell {
+    font-size: 1.5em;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+}
