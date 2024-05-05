@@ -1,13 +1,16 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+
 }
 
 table{
-    /* width: 300px; */
-    height: 300px;
+    
+    height: 200px;
     margin: auto;
     border: 1px solid black;
+    
+
 }
 
 table td{
@@ -22,4 +25,10 @@ height: 40px;
     width: 2em;
     height: 2em;
     text-align: center;
+
+}
+
+.shown{
+    background-color: cadetblue;
+
 }

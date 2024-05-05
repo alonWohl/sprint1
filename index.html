@@ -9,9 +9,10 @@
 <body onload="onInit()">
     <h1>Mine Sweeper</h1>
     <div class="buttons">
-        <button class="easy" onclick="onInit()">easy </button>
+        <button class="easy" onclick="changeLevelEasy()">easy </button>
         <button class="medium" onclick="changeLevelMedium()">medium</button>
         <button class="expert" onclick="changeLevelExpert()">expert</button>
+        <button class="undo" onclick="undoTurn()">undo</button>
     </div>
     <table class="table-container">
         <tbody class="board"></tbody>
