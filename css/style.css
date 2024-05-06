@@ -1,22 +1,28 @@
-body{
+body {
+    color: rgb(108, 177, 226);
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-
+    background-color: rgba(5, 32, 56, 0.836);
 }
 
-table{
-    
+table {
+
     height: 200px;
-    margin: auto;
-    border: 1px solid black;
-    
+    margin: 50px auto;
+    border: 1px transparent;
+    border-radius: 5px;
+
 
 }
 
-table td{
-border: 1px solid black;
-width: 40px;
-height: 40px;
+table td {
+
+    color: rgb(255, 255, 255);
+    background-color: rgb(108, 177, 226);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
 
 }
 
@@ -28,7 +34,31 @@ height: 40px;
 
 }
 
-.shown{
-    background-color: cadetblue;
+.shown {
+    background-color: rgb(73, 118, 137);
+    cursor: not-allowed;
 
+}
+
+.mine {
+    background-color: orangered;
+}
+
+
+.buttons button {
+    background-color: rgb(108, 177, 226);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+h2 span {
+    cursor: pointer;
 }

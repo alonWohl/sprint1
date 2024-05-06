@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mine Sweeper</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body onload="onInit()">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body onload="onInit()">
     <h1>Mine Sweeper</h1>
+
     <div class="buttons">
-        <button class="easy" onclick="changeLevelEasy()">easy </button>
-        <button class="medium" onclick="changeLevelMedium()">medium</button>
-        <button class="expert" onclick="changeLevelExpert()">expert</button>
-        <button class="undo" onclick="undoTurn()">undo</button>
+      <button class="easy" onclick="changeLevelEasy()">easy</button>
+      <button class="medium" onclick="changeLevelMedium()">medium</button>
+      <button class="expert" onclick="changeLevelExpert()">expert</button>
+      <!-- <button class="undo" onclick="undoTurn()">↩️</button> -->
     </div>
+
+    <h2><span onclick="resetGame()">😃</span></h2>
+    <h3><span class="timer">Time: 0 sec</span></h3>
+    <div class="properties">
+      <span class="lives">Lives : ❤️❤️❤️ | </span> <span class="flags"></span>
+    </div>
+
     <table class="table-container">
-        <tbody class="board"></tbody>
+      <tbody class="board"></tbody>
     </table>
     <script src="js/game.js"></script>
-</body>
+    <script src="js/build.js"></script>
+    <script src="js/util.js"></script>
+  </body>
 </html>
