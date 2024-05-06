@@ -1,28 +1,31 @@
 'use strict'
+var gSafeClicks = {
+  available: 3,
+}
 
 var minePlacementMode = false
 var minesAdded = 0
 
 function changeLevelEasy() {
+  resetGame()
   gLevel.size = 4
   gLevel.MINES = 2
-  resetGame()
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
 }
 
 function changeLevelMedium() {
+  resetGame()
   gLevel.size = 8
   gLevel.MINES = 14
-  resetGame()
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
 }
 
 function changeLevelExpert() {
+  resetGame()
   gLevel.size = 12
   gLevel.MINES = 32
-  resetGame()
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
 }
@@ -69,12 +72,11 @@ function updateLivesDisplay() {
 }
 
 function addMineManually(i, j) {
-  var elFlag = document.querySelector('.flags')
   if (minePlacementMode) {
     if (!gBoard[i][j].isMine) {
       gBoard[i][j].isMine = true
       minesAdded++
-      gLevel.MINES ++
+      gLevel.MINES++
       updateFlag()
 
       console.log(`Mine added at (${i}, ${j}).`)
@@ -84,7 +86,41 @@ function addMineManually(i, j) {
   }
 }
 
-function updateFlag(){
+function updateFlag() {
   var elFlag = document.querySelector('.flags')
   elFlag.innerHTML = `${gLevel.MINES} : 🚩`
+}
+
+function onSafeClick() {
+  if (gSafeClicks.available <= 0 || !gGame.isOn ||!gGame.firstClick) {
+    return
+  }
+  var safeCells = []
+  for (var i = 0; i < gBoard.length; i++) {
+    for (var j = 0; j < gBoard[i].length; j++) {
+      const cell = gBoard[i][j]
+      if (!cell.isShown && !cell.isMine && !cell.isMarked) {
+        safeCells.push({ i, j })
+      }
+    }
+  }
+
+  if (safeCells.length > 0) {
+    const randomCell = safeCells[Math.floor(Math.random() * safeCells.length)]
+    const elCell = document.querySelector(
+      `.cell-${randomCell.i}-${randomCell.j}`
+    )
+    elCell.classList.add('safe')
+    setTimeout(() => {
+      elCell.classList.remove('safe')
+    }, 1000)
+
+    gSafeClicks.available--
+    updateSafeClickDisplay()
+  }
+}
+
+function updateSafeClickDisplay() {
+  var elSafeClickBtn = document.querySelector('.safe-click')
+  elSafeClickBtn.innerText = `🛟 Safe Click : ${gSafeClicks.available}`
 }

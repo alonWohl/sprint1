@@ -19,7 +19,10 @@
     <h2><span onclick="onInit()">😃</span></h2>
     <h3><span class="timer">Time: 0 sec</span></h3>
     <div class="properties">
-      <span class="lives">Lives : ❤️❤️❤️ </span><span class="flags"></span><button onclick="toggleMinePlacementMode()" class="manual-mine" >Add 💣</button>
+      <span class="lives">Lives : ❤️❤️❤️ </span>
+      <span class="flags"></span>
+      <button class="manual-mine" onclick="toggleMinePlacementMode(this)">Add 💣</button>
+      <button class="safe-click" onclick="onSafeClick()">🛟 Safe Click : 3 </button>
     </div>
 
     <table class="table-container">

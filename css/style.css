@@ -7,7 +7,7 @@ body {
 
 table {
 
-    height: 200px;
+    height: 20vh;
     margin: 50px auto;
     border: 1px transparent;
     border-radius: 5px;
@@ -68,14 +68,20 @@ span {
     color: white;
 }
 
-.manual-mine {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-}
 
 .clicked {
     background-color: rgb(108, 177, 226);
 
+}
+
+.safe{
+   
+    background-color: lightgreen;
+  }
+  
+.properties button{
+    border: none;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
 }

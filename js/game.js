@@ -65,8 +65,7 @@ function renderBoard(board) {
   }
   const elBoard = document.querySelector('.board')
   elBoard.innerHTML = strHTML
-  var elFlag = document.querySelector('.flags')
- updateFlag()
+  updateFlag()
 }
 
 function setMinesNegsCount(board, row, col) {
@@ -86,14 +85,14 @@ function setMinesNegsCount(board, row, col) {
 function onCellClicked(elCell, i, j) {
   const cell = gBoard[i][j]
 
-  if (!gGame.isOn || gBoard[i][j].isShown) return
+  if (!gGame.isOn || gBoard[i][j].isShown||cell.isMarked) return
   if (minePlacementMode) {
     addMineManually(i, j)
     return
   }
 
   if (!gGame.firstClick) {
-    placeMines(gBoard, gLevel.MINES-minesAdded, i, j)
+    placeMines(gBoard, gLevel.MINES - minesAdded, i, j)
     startTimer()
     gGame.firstClick = true
   }
@@ -147,8 +146,8 @@ function checkGameOver() {
 }
 
 function expandShown(board, row, col) {
-  for (let i = row - 1; i <= row + 1; i++) {
-    for (let j = col - 1; j <= col + 1; j++) {
+  for (var i = row - 1; i <= row + 1; i++) {
+    for (var j = col - 1; j <= col + 1; j++) {
       if (
         i >= 0 &&
         i < board.length &&
@@ -207,12 +206,16 @@ function resetGame() {
   gGame.secsPassed = 0
   gGame.firstClick = false
   gGame.lives = 3
-  gLevel.MINES= gLevel.MINES - minesAdded
+  gLevel.MINES = gLevel.MINES - minesAdded
   minesAdded = 0
+  gSafeClicks.available= 3
+
   updateSmiley('😃')
   updateLivesDisplay()
   stopTimer()
   updateTimerDisplay()
+  updateSafeClickDisplay()
+
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
 }
