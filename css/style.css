@@ -68,20 +68,35 @@ span {
     color: white;
 }
 
+.properties button {
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.safe-click {
+    background-color: transparent;
+
+}
+
+.add-mine {
+    background-color: transparent;
+}
 
 .clicked {
     background-color: rgb(108, 177, 226);
 
 }
 
-.safe{
-   
+.safe {
+
     background-color: lightgreen;
-  }
-  
-.properties button{
-    border: none;
+}
+
+footer {
+
+padding-top: 30px;
+height: 50px;
+    background-color: rgb(108, 177, 226);
     color: white;
-    background-color: transparent;
-    cursor: pointer;
 }

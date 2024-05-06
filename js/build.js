@@ -47,7 +47,7 @@ function placeMines(board, minesCount, i, j) {
 }
 
 function toggleMinePlacementMode() {
-  var elToggleMineAdd = document.querySelector('.manual-mine')
+  var elToggleMineAdd = document.querySelector('.add-mine')
   minePlacementMode = !minePlacementMode
 
   if (minePlacementMode) {
@@ -65,7 +65,7 @@ function updateSmiley(face) {
 function updateLivesDisplay() {
   const elLives = document.querySelector('.lives')
   var livesString = 'Lives: '
-  for (let i = 0; i < gGame.lives; i++) {
+  for (var i = 0; i < gGame.lives; i++) {
     livesString += '❤️'
   }
   elLives.textContent = livesString
@@ -77,6 +77,7 @@ function addMineManually(i, j) {
       gBoard[i][j].isMine = true
       minesAdded++
       gLevel.MINES++
+
       updateFlag()
 
       console.log(`Mine added at (${i}, ${j}).`)
@@ -92,9 +93,10 @@ function updateFlag() {
 }
 
 function onSafeClick() {
-  if (gSafeClicks.available <= 0 || !gGame.isOn ||!gGame.firstClick) {
+  if (gSafeClicks.available <= 0 || !gGame.isOn || !gGame.firstClick) {
     return
   }
+
   var safeCells = []
   for (var i = 0; i < gBoard.length; i++) {
     for (var j = 0; j < gBoard[i].length; j++) {
