@@ -66,7 +66,7 @@ function renderBoard(board) {
   const elBoard = document.querySelector('.board')
   elBoard.innerHTML = strHTML
   var elFlag = document.querySelector('.flags')
-  elFlag.innerHTML = `${gLevel.MINES} : 🚩`
+ updateFlag()
 }
 
 function setMinesNegsCount(board, row, col) {
@@ -87,15 +87,13 @@ function onCellClicked(elCell, i, j) {
   const cell = gBoard[i][j]
 
   if (!gGame.isOn || gBoard[i][j].isShown) return
-
-  if (gHints.isActive) {
-    revealHint(i, j)
-    gHints.isActive = false
+  if (minePlacementMode) {
+    addMineManually(i, j)
     return
   }
 
   if (!gGame.firstClick) {
-    placeMines(gBoard, gLevel.MINES, i, j)
+    placeMines(gBoard, gLevel.MINES-minesAdded, i, j)
     startTimer()
     gGame.firstClick = true
   }
@@ -209,24 +207,12 @@ function resetGame() {
   gGame.secsPassed = 0
   gGame.firstClick = false
   gGame.lives = 3
+  gLevel.MINES= gLevel.MINES - minesAdded
+  minesAdded = 0
   updateSmiley('😃')
   updateLivesDisplay()
   stopTimer()
   updateTimerDisplay()
   gBoard = buildBoard(gLevel.size)
   renderBoard(gBoard)
-}
-
-function updateSmiley(face) {
-  var elSmiley = document.querySelector('h2 span')
-  elSmiley.innerText = face
-}
-
-function updateLivesDisplay() {
-  const elLives = document.querySelector('.lives')
-  let livesString = 'Lives: '
-  for (let i = 0; i < gGame.lives; i++) {
-    livesString += '❤️'
-  }
-  elLives.textContent = livesString
 }

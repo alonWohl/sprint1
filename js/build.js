@@ -1,3 +1,8 @@
+'use strict'
+
+var minePlacementMode = false
+var minesAdded = 0
+
 function changeLevelEasy() {
   gLevel.size = 4
   gLevel.MINES = 2
@@ -36,4 +41,50 @@ function placeMines(board, minesCount, i, j) {
       minesPlaced++
     }
   }
+}
+
+function toggleMinePlacementMode() {
+  var elToggleMineAdd = document.querySelector('.manual-mine')
+  minePlacementMode = !minePlacementMode
+
+  if (minePlacementMode) {
+    elToggleMineAdd.classList.add('clicked')
+  } else {
+    elToggleMineAdd.classList.remove('clicked')
+  }
+}
+
+function updateSmiley(face) {
+  var elSmiley = document.querySelector('h2 span')
+  elSmiley.innerText = face
+}
+
+function updateLivesDisplay() {
+  const elLives = document.querySelector('.lives')
+  var livesString = 'Lives: '
+  for (let i = 0; i < gGame.lives; i++) {
+    livesString += '❤️'
+  }
+  elLives.textContent = livesString
+}
+
+function addMineManually(i, j) {
+  var elFlag = document.querySelector('.flags')
+  if (minePlacementMode) {
+    if (!gBoard[i][j].isMine) {
+      gBoard[i][j].isMine = true
+      minesAdded++
+      gLevel.MINES ++
+      updateFlag()
+
+      console.log(`Mine added at (${i}, ${j}).`)
+    } else {
+      alert("There's already a mine here!")
+    }
+  }
+}
+
+function updateFlag(){
+  var elFlag = document.querySelector('.flags')
+  elFlag.innerHTML = `${gLevel.MINES} : 🚩`
 }

@@ -62,3 +62,20 @@ table td {
 h2 span {
     cursor: pointer;
 }
+
+span {
+    margin-right: 10px;
+    color: white;
+}
+
+.manual-mine {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+}
+
+.clicked {
+    background-color: rgb(108, 177, 226);
+
+}
