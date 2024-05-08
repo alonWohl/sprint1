@@ -1,16 +1,18 @@
 body {
+    min-height: 100vh;
     color: rgb(108, 177, 226);
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     background-color: rgba(5, 32, 56, 0.836);
+
 }
 
 table {
 
     height: 20vh;
-    margin: 50px auto;
+    margin: 30px auto ;
     border: 1px transparent;
-    border-radius: 5px;
+
 
 
 }
@@ -21,6 +23,7 @@ table td {
     background-color: rgb(108, 177, 226);
     width: 40px;
     height: 40px;
+    border: solid;
     border-radius: 5px;
     cursor: pointer;
 
@@ -51,7 +54,6 @@ table td {
     color: white;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
@@ -95,8 +97,5 @@ span {
 
 footer {
 
-padding-top: 30px;
-height: 50px;
-    background-color: rgb(108, 177, 226);
     color: white;
 }

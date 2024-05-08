@@ -6,6 +6,7 @@
     <title>Mine Sweeper</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
+  <div class="main-content">
   <body onload="onInit()">
     <h1>Mine Sweeper</h1>
 
@@ -13,7 +14,7 @@
       <button class="easy" onclick="changeLevelEasy()">Easy</button>
       <button class="medium" onclick="changeLevelMedium()">Medium</button>
       <button class="expert" onclick="changeLevelExpert()">Expert</button>
-      <!-- <button class="undo" onclick="undoTurn()">↩️</button> -->
+
     </div>
 
     <h2><span onclick="onInit()">😃</span></h2>
@@ -23,14 +24,16 @@
       <span class="flags"></span>
       <button class="add-mine" onclick="toggleMinePlacementMode(this)">Add 💣</button>
       <button class="safe-click" onclick="onSafeClick()">🛟 Safe Click : 3 </button>
+
     </div>
 
     <table class="table-container">
       <tbody class="board"></tbody>
     </table>
     <script src="js/game.js"></script>
-    <script src="js/build.js"></script>
+    <script src="js/UI.js"></script>
     <script src="js/util.js"></script>
   </body>
+</div>
   <footer>Alon Wohl</footer>
 </html>
