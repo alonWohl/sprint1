@@ -82,6 +82,7 @@ function onCellClicked(elCell, i, j) {
 
   if (!gGame.isOn || gBoard[i][j].isShown || cell.isMarked) return
   if (minePlacementMode) {
+    if (gLevel.MINES >= gLevel.size * gLevel.size) return
     addMineManually(i, j)
     return
   }
