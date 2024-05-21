@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mine Sweeper</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <div class="main-content">
-  <body onload="onInit()">
-    <h1>Mine Sweeper</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mine Sweeper</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <div class="main-content">
+        <body onload="onInit()">
+            <h1>Mine Sweeper</h1>
 
-    <div class="buttons">
-      <button class="easy" onclick="changeLevelEasy()">Easy</button>
-      <button class="medium" onclick="changeLevelMedium()">Medium</button>
-      <button class="expert" onclick="changeLevelExpert()">Expert</button>
+            <div class="buttons">
+                <button class="easy" onclick="changeLevelEasy()">Easy</button>
+                <button class="medium" onclick="changeLevelMedium()">
+                    Medium
+                </button>
+                <button class="expert" onclick="changeLevelExpert()">
+                    Expert
+                </button>
+            </div>
 
+            <h2><span onclick="onInit()">😃</span></h2>
+            <h3><span class="timer">Time: 0 sec</span></h3>
+            <div class="properties">
+                <span class="lives">Lives : ❤️❤️❤️ </span>
+                <span class="flags"></span>
+                <button
+                    class="add-mine"
+                    onclick="toggleMinePlacementMode(this)"
+                >
+                    Add 💣
+                </button>
+                <button class="safe-click" onclick="onSafeClick()">
+                    🛟 Safe Click : 3
+                </button>
+            </div>
+
+            <table class="table-container">
+                <tbody class="board"></tbody>
+            </table>
+            <script src="js/util.js"></script>
+            <script src="js/UI.js"></script>
+            <script src="js/game.js"></script>
+        </body>
     </div>
-
-    <h2><span onclick="onInit()">😃</span></h2>
-    <h3><span class="timer">Time: 0 sec</span></h3>
-    <div class="properties">
-      <span class="lives">Lives : ❤️❤️❤️ </span>
-      <span class="flags"></span>
-      <button class="add-mine" onclick="toggleMinePlacementMode(this)">Add 💣</button>
-      <button class="safe-click" onclick="onSafeClick()">🛟 Safe Click : 3 </button>
-
-    </div>
-
-    <table class="table-container">
-      <tbody class="board"></tbody>
-    </table>
-    <script src="js/game.js"></script>
-    <script src="js/UI.js"></script>
-    <script src="js/util.js"></script>
-  </body>
-</div>
-  <footer>Alon Wohl</footer>
+    <footer>Alon Wohl</footer>
 </html>
